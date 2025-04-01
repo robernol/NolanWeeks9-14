@@ -9,7 +9,7 @@ public class knight : MonoBehaviour
     Animator animator;
     SpriteRenderer sr;
     AudioSource audsrc;
-    ParticleSystem part;
+    public ParticleSystem part;
     public AnimationCurve jump;
     public AudioClip f0, f1, f2, f3, f4, f5, f6, f7, f8, f9;
     public bool canRun = true;
@@ -20,7 +20,6 @@ public class knight : MonoBehaviour
         animator = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
         audsrc = GetComponent<AudioSource>();
-        part = GetComponent<ParticleSystem>();
     }
 
     // Update is called once per frame
