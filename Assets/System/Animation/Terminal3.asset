@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13b75c95f34a00d4e8c04f76b73312e6, type: 3}
+  m_Name: Terminal3
+  m_EditorClassIdentifier: 
+  m_AnimatedSprites:
+  - {fileID: 1704834367, guid: 4d687b78ec0c57a41ae4452d55a1e26e, type: 3}
+  - {fileID: 554982193, guid: 4d687b78ec0c57a41ae4452d55a1e26e, type: 3}
+  - {fileID: -507955108, guid: 4d687b78ec0c57a41ae4452d55a1e26e, type: 3}
+  - {fileID: 554982193, guid: 4d687b78ec0c57a41ae4452d55a1e26e, type: 3}
+  - {fileID: 1704834367, guid: 4d687b78ec0c57a41ae4452d55a1e26e, type: 3}
+  m_MinSpeed: 5
+  m_MaxSpeed: 5
+  m_AnimationStartTime: 0
+  m_AnimationStartFrame: 0
+  m_TileColliderType: 1
+  m_TileAnimationFlags: 0
