@@ -18,10 +18,10 @@ public class NewBehaviourScript : MonoBehaviour
 
     void Start()
     {
-        angerValue = 1;
-        canMove = true;
+        angerValue = 1; //anger increases by 1 every anger time period
+        canMove = true; //can move, not asleep
         isSleeping = false;
-        anger = 0;
+        anger = 0; //anger starts off at 0
         angertime = 0.5f;
         angertimer = Time.time;
         anim = GetComponent<Animator>();
@@ -29,15 +29,15 @@ public class NewBehaviourScript : MonoBehaviour
     }
     void Update()
     {
-        Boolean isMoving = false;
+        bool isMoving = false; //check every frame to tell if player has moved
 
-        if (isSleeping == true)
+        if (isSleeping == true) //when asleep, hides the interact button
         {
             e.SetActive(false);
-            if ((Input.GetKeyDown(KeyCode.W)) || (Input.GetKeyDown(KeyCode.A)) || (Input.GetKeyDown(KeyCode.S)) || (Input.GetKeyDown(KeyCode.D)))
+            if ((Input.GetKeyDown(KeyCode.W)) || (Input.GetKeyDown(KeyCode.A)) || (Input.GetKeyDown(KeyCode.S)) || (Input.GetKeyDown(KeyCode.D))) //upon moving, gets out
             {
                 isSleeping = false;
-                cam.GetComponent<CameraControl>().isSleeping = false;
+                cam.GetComponent<CameraControl>().isSleeping = false; //puts everything back to normal, lets camera know to refocus on player
                 angerValue = 1;
                 GetComponent<SpriteRenderer>().enabled = true;
                 GetComponent<Animator>().enabled = true;
@@ -46,7 +46,7 @@ public class NewBehaviourScript : MonoBehaviour
             }
             else
             {
-                GetComponent<SpriteRenderer>().enabled = false;
+                GetComponent<SpriteRenderer>().enabled = false; //if not moving, makes the player sprite disappear
                 GetComponent<Animator>().enabled = false;
             }
         }
@@ -57,31 +57,31 @@ public class NewBehaviourScript : MonoBehaviour
             tx = 0;
             ty = 0;
 
-            if (Input.GetKey(KeyCode.W))
+            if (Input.GetKey(KeyCode.W)) //w moves player up
             {
                 ty += 0.005f;
-                isMoving = true;
+                isMoving = true; //lets game know player has moved this frame
             }
 
-            if (Input.GetKey(KeyCode.A))
+            if (Input.GetKey(KeyCode.A)) //a moves left
             {
                 tx -= 0.005f;
                 isMoving = true;
             }
 
-            if (Input.GetKey(KeyCode.S))
+            if (Input.GetKey(KeyCode.S)) //s down
             {
                 ty -= 0.005f;
                 isMoving = true;
             }
 
-            if (Input.GetKey(KeyCode.D))
+            if (Input.GetKey(KeyCode.D)) //d right
             {
                 tx += 0.005f;
                 isMoving = true;
             }
 
-            if (temp.y > 0)
+            if (temp.y > 0) //changing layers around based on y position so that depending on where player is standing they will be either in front or behind the alien
             {
                 temp.z = 3;
             }
@@ -97,40 +97,40 @@ public class NewBehaviourScript : MonoBehaviour
 
         
 
-        if (Time.time > angertimer + angertime)
+        if (Time.time > angertimer + angertime) //when anger timer has elapsed, refreshes by adding the anger time back to the curent time
         {
             angertimer = Time.time + angertime;
-            anger += angerValue;
-            if (anger > 200) 
+            anger += angerValue; //every anger timer, adds the anger value to the anger total
+            if (anger > 200)  //if you get too mad, you blow a gasket and die. You must sleep to prevent dying of angry
             {
                 alien.GetComponent<Alien>().dialogue.text = "Yikes, looks like you blew a gasket. Better luck next time.";
-                Destroy(this.gameObject); 
+                Destroy(this.gameObject); //player destroys itself
             }
         }
 
-        s.value = anger;
+        s.value = anger; //lets slider know where to put the little player head icon on the anger meter
 
 
-        anim.SetBool("moving", isMoving);
-        anim.SetInteger("anger", anger);
+        anim.SetBool("moving", isMoving); //plays walking animation if the player has moved this frame
+        anim.SetInteger("anger", anger); //as the player gets angrier, their sprite will reflect this. Changes at each 25 anger increment
 
-        if (tx > 0)
+        if (tx > 0) //if you moved to the left, flips you
         {
             sr.flipX = true;
         }
-        else if (tx < 0)
+        else if (tx < 0) //if not, sets you back to normal
         {
             sr.flipX = false; 
         }
 
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D collision) //detects when in the range of an object you can interact with. Will then enable the e button prompt above your head
     {
         e.SetActive(true);
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
+    private void OnCollisionExit2D(Collision2D collision) //detects when no longer in range
     {
         e.SetActive(false);
     }

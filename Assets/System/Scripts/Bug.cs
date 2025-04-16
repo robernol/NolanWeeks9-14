@@ -11,7 +11,7 @@ public class bug : MonoBehaviour
     public float timer;
     void Start()
     {
-        dead = false;
+        dead = false; //not yet, squishy one.
         anim = GetComponent<Animator>();
     }
 
@@ -20,7 +20,7 @@ public class bug : MonoBehaviour
 
         if (dead == true)
         {
-            if (Time.time > timer)
+            if (Time.time > timer) //once bug is squished, remains for a second then destroys itself
             {
                 Object.Destroy(this.gameObject);
             }
@@ -30,14 +30,14 @@ public class bug : MonoBehaviour
 
     private void OnMouseOver()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0)) //if clicked on, bug becomes dead
         {
-            if (!dead)
+            if (!dead) //only happens if not already dead, otherwise you could squish one bug multiple times! :O
             {
                 dead = true;
-                anim.SetTrigger("squished");
-                origin.squishedBugs++;
-                timer = Time.time + 1;
+                anim.SetTrigger("squished"); //squish animation
+                origin.squishedBugs++; //increases squished bugs count
+                timer = Time.time + 1; //timer before bug disappears
             }
         }
             
