@@ -22,7 +22,7 @@ public class Bed : MonoBehaviour
         {
             cam.GetComponent<CameraControl>().isSleeping = true;
             p.GetComponent<NewBehaviourScript>().isSleeping = true;
-            p.GetComponent<NewBehaviourScript>().angerValue = -2;
+            p.GetComponent<NewBehaviourScript>().angerValue = -5;
             anim.SetBool("sleeping", true);
         }
 

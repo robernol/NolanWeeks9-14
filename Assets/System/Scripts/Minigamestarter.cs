@@ -7,7 +7,8 @@ using UnityEngine.UIElements;
 public class minigamestarter : MonoBehaviour
 {
     bool canActivate;
-    public GameObject game, cam, p;
+    public bool isActive;
+    public GameObject game, cam, p, indicator, alien;
     public GameObject t;
     void Start()
     {
@@ -16,14 +17,28 @@ public class minigamestarter : MonoBehaviour
 
     void Update()
     {
-        if ((Input.GetKeyDown(KeyCode.E)) && (canActivate == true) && (t == null))
+        if (isActive)
         {
+            indicator.SetActive(true);
+        }
+
+        if ((Input.GetKeyDown(KeyCode.E)) && (canActivate == true) && (t == null) && (isActive == true))
+        {
+            isActive = false;
             Vector3 temp = cam.transform.position;
             temp.z = -2;
             temp.y -= 0.2f;
             t = Instantiate(game, temp, transform.rotation);
             p.GetComponent<NewBehaviourScript>().canMove = false;
         }
+
+        if ((isActive == false) && (canActivate == true) && (indicator.activeSelf))
+        {
+            indicator.SetActive(false);
+            alien.GetComponent<Alien>().taskCompleted = true;
+            alien.GetComponent<Alien>().dialogue.text = "Finally. Now get back over here.";
+        }
+        
         if ((t == null) && canActivate == true)
         {
             p.GetComponent<NewBehaviourScript>().canMove = true;

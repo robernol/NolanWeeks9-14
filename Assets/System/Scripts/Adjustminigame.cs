@@ -8,7 +8,7 @@ public class adjustminigame : MonoBehaviour
 {
     public GameObject b1, b2, b3;
     Transform s1, s2, s3;
-    float rate = 0.005f;
+    float rate = 0.0012f;
     float scale;
     int barsCompleted;
     Vector3 flat;
@@ -69,13 +69,13 @@ public class adjustminigame : MonoBehaviour
                 {
                     barsCompleted++;
                     scale = 0;
-                    rate = 0.005f;
+                    rate = 0.0012f;
                 }
                 else
                 {
                     barsCompleted = 0;
                     scale = 0;
-                    rate = 0.005f;
+                    rate = 0.0012f;
                     s1.localScale = flat;
                     s2.localScale = flat;
                     s3.localScale = flat;
@@ -87,13 +87,13 @@ public class adjustminigame : MonoBehaviour
                 {
                     barsCompleted++;
                     scale = 0;
-                    rate = 0.01f;
+                    rate = 0.0025f;
                 }
                 else
                 {
                     barsCompleted = 0;
                     scale = 0;
-                    rate = 0.005f;
+                    rate = 0.0012f;
                     s1.localScale = flat;
                     s2.localScale = flat;
                     s3.localScale = flat;
@@ -105,14 +105,14 @@ public class adjustminigame : MonoBehaviour
                 {
                     barsCompleted++;
                     scale = 0;
-                    rate = 0.013f;
+                    rate = 0.0035f;
                     timer = Time.time + 2;
                 }
                 else
                 {
                     barsCompleted = 0;
                     scale = 0;
-                    rate = 0.005f;
+                    rate = 0.0012f;
                     s1.localScale = flat;
                     s2.localScale = flat;
                     s3.localScale = flat;

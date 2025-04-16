@@ -10,7 +10,7 @@ public class NewBehaviourScript : MonoBehaviour
     public int anger, angerValue;
     Animator anim;
     float tx, ty;
-    public GameObject e, cam, bed;
+    public GameObject e, cam, bed, alien;
     SpriteRenderer sr;
     public Slider s;
     float angertimer;
@@ -59,25 +59,25 @@ public class NewBehaviourScript : MonoBehaviour
 
             if (Input.GetKey(KeyCode.W))
             {
-                ty += 0.01f;
+                ty += 0.005f;
                 isMoving = true;
             }
 
             if (Input.GetKey(KeyCode.A))
             {
-                tx -= 0.01f;
+                tx -= 0.005f;
                 isMoving = true;
             }
 
             if (Input.GetKey(KeyCode.S))
             {
-                ty -= 0.01f;
+                ty -= 0.005f;
                 isMoving = true;
             }
 
             if (Input.GetKey(KeyCode.D))
             {
-                tx += 0.01f;
+                tx += 0.005f;
                 isMoving = true;
             }
 
@@ -101,7 +101,11 @@ public class NewBehaviourScript : MonoBehaviour
         {
             angertimer = Time.time + angertime;
             anger += angerValue;
-            if (anger > 200) { anger = 200; }
+            if (anger > 200) 
+            {
+                alien.GetComponent<Alien>().dialogue.text = "Yikes, looks like you blew a gasket. Better luck next time.";
+                Destroy(this.gameObject); 
+            }
         }
 
         s.value = anger;
